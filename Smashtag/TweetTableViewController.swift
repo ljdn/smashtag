@@ -19,6 +19,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         didSet {
             searchTextField?.text = searchText
             searchTextField?.resignFirstResponder()
+            lastTwitterRequest = nil
             tweets.removeAll()
             tableView.reloadData()
             searchForTweets()
@@ -36,7 +37,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private var lastTwitterRequest: Twitter.Request?
     
     private func searchForTweets() {
-        if let request = twitterRequest() {
+        if let request = lastTwitterRequest?.newer ?? twitterRequest() {
             lastTwitterRequest = request
             request.fetchTweets { [weak self] newTweets in
                 DispatchQueue.main.async {
@@ -44,8 +45,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                         self?.tweets.insert(newTweets, at: 0)
                         self?.tableView.insertSections([0], with: .fade)
                     }
+                    self?.refreshControl?.endRefreshing()
                 }
             }
+        } else {
+            self.refreshControl?.endRefreshing()
         }
     }
     
@@ -55,6 +59,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
 
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        searchForTweets()
+    }
+    
     @IBOutlet weak var searchTextField: UITextField! {
         didSet {
             searchTextField.delegate = self
@@ -86,50 +94,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "\(tweets.count-section)"
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
