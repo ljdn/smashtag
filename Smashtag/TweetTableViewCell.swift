@@ -21,6 +21,8 @@ class TweetTableViewCell: UITableViewCell {
     
     private func updateUI() {
         tweetTextLabel?.text = tweet?.text
+        formatText()
+        
         tweetUserLabel?.text = tweet?.user.description
         
         if let profileImageURL = tweet?.user.profileImageURL {
@@ -43,4 +45,21 @@ class TweetTableViewCell: UITableViewCell {
             tweetCreatedLabel?.text = nil
         }
     }
+    
+    private func formatText() {
+        if let text = tweetTextLabel.attributedText as? NSMutableAttributedString {
+            for userMention in tweet!.userMentions {
+                text.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: userMention.nsrange)
+            }
+            for hashtag in tweet!.hashtags {
+                text.addAttribute(NSForegroundColorAttributeName, value: UIColor.magenta, range: hashtag.nsrange)
+            }
+            for url in tweet!.urls {
+                text.addAttribute(NSForegroundColorAttributeName, value: UIColor.green, range: url.nsrange)
+            }
+            
+            tweetTextLabel.attributedText = text
+        }
+    }
+    
 }
