@@ -26,15 +26,15 @@
                             <textInputTraits key="textInputTraits" keyboardType="twitter" returnKeyType="search"/>
                         </textField>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="117" id="8A2-Hd-mSJ" customClass="TweetTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="117" id="8A2-Hd-mSJ" customClass="TweetTableViewCell" customModule="Smashtag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="58" width="375" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8A2-Hd-mSJ" id="biE-pK-VLi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="116.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="116.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="htL-qW-pUW">
-                                            <rect key="frame" x="7" y="8" width="360" height="100.5"/>
+                                            <rect key="frame" x="7" y="8" width="327" height="100.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4P0-Pe-rom">
                                                     <rect key="frame" x="0.0" y="0.0" width="91" height="91.5"/>
@@ -55,7 +55,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZhV-8L-Vkt">
-                                                    <rect key="frame" x="101" y="0.0" width="259" height="41"/>
+                                                    <rect key="frame" x="101" y="0.0" width="226" height="41"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweeter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-Ci-9Rf">
                                                             <rect key="frame" x="0.0" y="0.0" width="65" height="20.5"/>
@@ -86,6 +86,7 @@
                                     <outlet property="tweetProfileImageView" destination="bI2-uv-H1A" id="6Lq-B9-556"/>
                                     <outlet property="tweetTextLabel" destination="iWW-gH-VMY" id="iKH-I5-rQc"/>
                                     <outlet property="tweetUserLabel" destination="fdG-Ci-9Rf" id="LrO-78-hSz"/>
+                                    <segue destination="DCC-S8-Ib4" kind="showDetail" identifier="showTweetDetails" id="UQc-IQ-qli"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -110,22 +111,49 @@
             </objects>
             <point key="canvasLocation" x="767.20000000000005" y="138.98050974512745"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Tweet Detail Table View Controller-->
         <scene sceneID="Mdx-Me-1FU">
             <objects>
-                <tableViewController id="DCC-S8-Ib4" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YqO-5V-qfO">
+                <tableViewController id="DCC-S8-Ib4" customClass="TweetDetailTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="210" sectionHeaderHeight="28" sectionFooterHeight="28" id="YqO-5V-qfO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="BVP-12-3T1">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetDetails" rowHeight="210" id="BVP-12-3T1" customClass="DetailTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BVP-12-3T1" id="khY-zs-XRp">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k29-v0-c8K">
+                                            <rect key="frame" x="8" y="8" width="359" height="128"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbr-O1-Bpl">
+                                            <rect key="frame" x="8" y="144" width="359" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="58" id="a2e-Gi-ih2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="k29-v0-c8K" firstAttribute="trailing" secondItem="Fbr-O1-Bpl" secondAttribute="trailing" id="0oJ-sz-SDO"/>
+                                        <constraint firstItem="k29-v0-c8K" firstAttribute="trailing" secondItem="khY-zs-XRp" secondAttribute="trailingMargin" id="JeV-rS-gWl"/>
+                                        <constraint firstItem="k29-v0-c8K" firstAttribute="top" secondItem="khY-zs-XRp" secondAttribute="topMargin" id="QfZ-4Z-HgQ"/>
+                                        <constraint firstItem="k29-v0-c8K" firstAttribute="leading" secondItem="Fbr-O1-Bpl" secondAttribute="leading" id="U73-7E-Xqi"/>
+                                        <constraint firstItem="Fbr-O1-Bpl" firstAttribute="top" secondItem="k29-v0-c8K" secondAttribute="bottom" constant="8" symbolic="YES" id="adQ-mz-TBA"/>
+                                        <constraint firstItem="k29-v0-c8K" firstAttribute="leading" secondItem="khY-zs-XRp" secondAttribute="leadingMargin" id="jNB-bm-aTX"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Fbr-O1-Bpl" secondAttribute="bottom" constant="-0.5" id="vCt-Zi-G8f"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="DetailImageView" destination="k29-v0-c8K" id="Crv-Jh-DgP"/>
+                                    <outlet property="DetailTextLabel" destination="Fbr-O1-Bpl" id="J2V-vb-fcP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -136,7 +164,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BT4-xi-NYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490" y="139"/>
+            <point key="canvasLocation" x="1488.8" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="toh-Ue-WNQ">

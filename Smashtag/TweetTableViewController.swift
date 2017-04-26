@@ -10,7 +10,7 @@ import UIKit
 import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
-    
+
     private var tweets = [Array<Tweet>]() {
         didSet { }
     }
@@ -91,11 +91,22 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         if let tweetCell = cell as? TweetTableViewCell {
             tweetCell.tweet = tweet
         }
-        
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "\(tweets.count-section)"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let selected = tableView.indexPathForSelectedRow!
+        let tweet = tweets[selected.section][selected.row]
+        
+        if segue.identifier == "showTweetDetails" {
+            if let tweetDetailTVC = segue.destination as? TweetDetailTableViewController {
+                tweetDetailTVC.tweet = tweet
+            }
+        }
     }
 }

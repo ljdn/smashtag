@@ -16,8 +16,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetUserLabel: UILabel!
     @IBOutlet weak var tweetCreatedLabel: UILabel!
     
-    var tweet: Twitter.Tweet? { didSet { updateUI() }
-    }
+    var tweet: Twitter.Tweet? { didSet { updateUI() }}
     
     private func updateUI() {
         tweetTextLabel?.text = tweet?.text
