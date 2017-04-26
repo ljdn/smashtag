@@ -21,9 +21,11 @@ class DetailTableViewCell: UITableViewCell {
         if let media = displayData as? MediaItem {
             if let imageData = try? Data(contentsOf: media.url) {
                 DetailImageView.image = UIImage(data: imageData)
+                DetailTextLabel.isHidden = true
             }
         } else if let textData = displayData as? Mention {
             DetailTextLabel.text = String(describing: textData)
+            DetailImageView.isHidden = true
         }
         
     }
