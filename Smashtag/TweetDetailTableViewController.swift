@@ -51,11 +51,6 @@ class TweetDetailTableViewController: UITableViewController {
 
         if let detailCell = cell as? DetailTableViewCell, let displayData = sections[sectionTitle]?[indexPath.row]{
             detailCell.displayData = displayData
-//            if sectionTitle == "Media" {
-//                detailCell.DetailTextLabel.isHidden = true
-//            } else {
-//                detailCell.DetailImageView.isHidden = true
-//            }
         }
 
         return cell
@@ -70,42 +65,23 @@ class TweetDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if sectionTitles[indexPath.section] == "Media" {
+            self.performSegue(withIdentifier: "showImageScrollView", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "searchForTerm", sender: nil)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let selected = tableView.indexPathForSelectedRow!
+        
+        if segue.identifier == "showImageScrollView" {
+            if let imageScrollVC = segue.destination as?ImageScrollViewController, let mediaItem = sections[sectionTitles[selected.section]]?[selected.row] as? Twitter.MediaItem {
+                imageScrollVC.imageURL = mediaItem.url
+            }
+        }
     }
-    */
 
 }
