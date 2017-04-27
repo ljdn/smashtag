@@ -64,9 +64,6 @@ class TweetDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if sectionTitles[indexPath.section] == "Media", let image = sections[sectionTitles[indexPath.section]]?[indexPath.row] as? Twitter.MediaItem {
             let rowHeight = 1 / (CGFloat(image.aspectRatio) / view.frame.width)
-            print(image.aspectRatio)
-            print(view.frame.width)
-            print(rowHeight)
             return rowHeight
         } else {
             return UITableViewAutomaticDimension

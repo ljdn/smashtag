@@ -12,6 +12,7 @@ import Twitter
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
     private var tweets = [Array<Twitter.Tweet>]()
+    private var savedSearches: RecentSearches?
     
     var searchText: String? {
         didSet {
@@ -21,6 +22,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             tweets.removeAll()
             tableView.reloadData()
             searchForTweets()
+            savedSearches?.saveSearch(searchText: searchText!)
             title = searchText
         }
     }
@@ -53,6 +55,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        savedSearches = RecentSearches()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
