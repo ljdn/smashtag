@@ -69,6 +69,14 @@ class TweetDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if sectionTitles[indexPath.section] == "Media" {
             self.performSegue(withIdentifier: "showImageScrollView", sender: nil)
+        } else if sectionTitles[indexPath.section] == "URLS" {
+            let mention = sections[sectionTitles[indexPath.section]]?[indexPath.row] as! Twitter.Mention
+            let url = URL(string: mention.keyword)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
         } else {
             self.performSegue(withIdentifier: "searchForTerm", sender: nil)
         }
