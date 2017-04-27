@@ -81,6 +81,15 @@ class TweetDetailTableViewController: UITableViewController {
             if let imageScrollVC = segue.destination as?ImageScrollViewController, let mediaItem = sections[sectionTitles[selected.section]]?[selected.row] as? Twitter.MediaItem {
                 imageScrollVC.imageURL = mediaItem.url
             }
+        } else if segue.identifier == "searchForTerm" {
+            var destinationVC = segue.destination
+            if let navController = destinationVC as? UINavigationController {
+                destinationVC = navController.visibleViewController ?? destinationVC
+            }
+            if let tweetTableVC = destinationVC as? TweetTableViewController, let mention = sections[sectionTitles[selected.section]]?[selected.row] as? Twitter.Mention {
+                print(mention.keyword)
+                tweetTableVC.searchText = mention.keyword
+            }
         }
     }
 

@@ -86,7 +86,7 @@
                                     <outlet property="tweetProfileImageView" destination="bI2-uv-H1A" id="6Lq-B9-556"/>
                                     <outlet property="tweetTextLabel" destination="iWW-gH-VMY" id="iKH-I5-rQc"/>
                                     <outlet property="tweetUserLabel" destination="fdG-Ci-9Rf" id="LrO-78-hSz"/>
-                                    <segue destination="DCC-S8-Ib4" kind="showDetail" identifier="showTweetDetails" id="UQc-IQ-qli"/>
+                                    <segue destination="DCC-S8-Ib4" kind="show" identifier="showTweetDetails" action="showDetailViewController:sender:" id="UQc-IQ-qli"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -162,13 +162,13 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="CcO-F3-t2S" kind="showDetail" identifier="showImageScrollView" id="6BT-un-ZfD"/>
-                        <segue destination="9T2-lJ-h6H" kind="showDetail" identifier="searchForTerm" id="2FD-fp-ZT7"/>
+                        <segue destination="CcO-F3-t2S" kind="show" identifier="showImageScrollView" action="showDetailViewController:sender:" id="6BT-un-ZfD"/>
+                        <segue destination="9T2-lJ-h6H" kind="showDetail" identifier="searchForTerm" id="6hA-Ee-4xy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BT4-xi-NYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="308" y="872"/>
+            <point key="canvasLocation" x="54" y="870"/>
         </scene>
         <!--Image Scroll View Controller-->
         <scene sceneID="gdH-jS-OPf">

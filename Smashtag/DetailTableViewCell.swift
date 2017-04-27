@@ -18,15 +18,15 @@ class DetailTableViewCell: UITableViewCell {
     
     private func updateUI() {
         
-        if let media = displayData as? MediaItem {
+        if let media = displayData as? Twitter.MediaItem {
             if let imageData = try? Data(contentsOf: media.url) {
                 DetailImageView.image = UIImage(data: imageData)
                 DetailImageView.contentMode = UIViewContentMode.scaleAspectFit
                 DetailTextLabel.isHidden = true
                 
             }
-        } else if let textData = displayData as? Mention {
-            DetailTextLabel.text = String(describing: textData)
+        } else if let textData = displayData as? Twitter.Mention {
+            DetailTextLabel.text = textData.keyword
             DetailImageView.isHidden = true
         }
         
