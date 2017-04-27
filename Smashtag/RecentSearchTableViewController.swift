@@ -9,7 +9,7 @@
 import UIKit
 
 class RecentSearchTableViewController: UITableViewController {
-    var recentSearches = RecentSearches()
+    var recentSearches = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +38,16 @@ class RecentSearchTableViewController: UITableViewController {
         
         if segue.identifier == "searchRecentTerm" {
             var destination = segue.destination
+            if let tabBarController = destination as? UITabBarController {
+                destination = (tabBarController.viewControllers?[0] ?? destination)!
+                tabBarController.selectedIndex = 0
+                print("set destination to nav controller")
+            }
             if let navController = destination as? UINavigationController {
                 destination = navController.visibleViewController ?? destination
             }
             if let tweetTableVC = destination as? TweetTableViewController {
+                print(recentSearches.getSearches())
                 tweetTableVC.searchText = recentSearches.getSearches()[(selected?.row)!]
             }
         }

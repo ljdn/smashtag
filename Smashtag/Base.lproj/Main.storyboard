@@ -137,7 +137,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="9T2-lJ-h6H" kind="showDetail" identifier="searchRecentTerm" id="xkP-OC-7mL"/>
+                                    <segue destination="QM5-qd-p4K" kind="showDetail" identifier="searchRecentTerm" id="0gU-v2-2IX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -307,6 +307,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xkP-OC-7mL"/>
+        <segue reference="2ha-OC-PzB"/>
     </inferredMetricsTieBreakers>
 </document>
