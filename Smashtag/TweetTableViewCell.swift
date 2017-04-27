@@ -19,17 +19,30 @@ class TweetTableViewCell: UITableViewCell {
     var tweet: Twitter.Tweet? { didSet { updateUI() }}
     
     private func updateUI() {
-        tweetTextLabel?.text = tweet?.text
-        formatText()
+        tweetTextLabel?.attributedText = nil
+        tweetUserLabel?.text = nil
+        tweetProfileImageView?.image = nil
+        tweetCreatedLabel?.text = nil
         
-        tweetUserLabel?.text = tweet?.user.description
-        
-        if let profileImageURL = tweet?.user.profileImageURL {
-            if let imageData = try? Data(contentsOf: profileImageURL) {
-                tweetProfileImageView?.image = UIImage(data: imageData)
+        if let tweet = self.tweet {
+            
+            tweetTextLabel?.text = tweet.text
+            if tweetTextLabel?.text != nil  {
+                for _ in tweet.media {
+                    tweetTextLabel.text! += " 📷"
+                }
             }
-        } else {
-            tweetProfileImageView?.image = nil
+            formatText()
+            
+            tweetUserLabel?.text = tweet.user.description
+            
+            if let profileImageURL = tweet.user.profileImageURL {
+                if let imageData = try? Data(contentsOf: profileImageURL) {
+                    tweetProfileImageView?.image = UIImage(data: imageData)
+                }
+            } else {
+                tweetProfileImageView?.image = nil
+            }
         }
         
         if let created = tweet?.created {

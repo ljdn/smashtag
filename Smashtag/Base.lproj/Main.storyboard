@@ -86,7 +86,7 @@
                                     <outlet property="tweetProfileImageView" destination="bI2-uv-H1A" id="6Lq-B9-556"/>
                                     <outlet property="tweetTextLabel" destination="iWW-gH-VMY" id="iKH-I5-rQc"/>
                                     <outlet property="tweetUserLabel" destination="fdG-Ci-9Rf" id="LrO-78-hSz"/>
-                                    <segue destination="DCC-S8-Ib4" kind="show" identifier="showTweetDetails" action="showDetailViewController:sender:" id="UQc-IQ-qli"/>
+                                    <segue destination="DCC-S8-Ib4" kind="show" identifier="showTweetDetails" id="HUQ-83-rUq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -162,13 +162,13 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="CcO-F3-t2S" kind="show" identifier="showImageScrollView" action="showDetailViewController:sender:" id="6BT-un-ZfD"/>
                         <segue destination="9T2-lJ-h6H" kind="showDetail" identifier="searchForTerm" id="6hA-Ee-4xy"/>
+                        <segue destination="CcO-F3-t2S" kind="show" identifier="showImageScrollView" id="IW8-X9-kMq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BT4-xi-NYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="54" y="870"/>
+            <point key="canvasLocation" x="14" y="870"/>
         </scene>
         <!--Image Scroll View Controller-->
         <scene sceneID="gdH-jS-OPf">
@@ -186,7 +186,7 @@
                                 <rect key="frame" x="177" y="323" width="20" height="20"/>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-34-Wxv">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

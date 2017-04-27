@@ -11,9 +11,7 @@ import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
-    private var tweets = [Array<Tweet>]() {
-        didSet { }
-    }
+    private var tweets = [Array<Twitter.Tweet>]()
     
     var searchText: String? {
         didSet {

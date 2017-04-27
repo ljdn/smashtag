@@ -21,7 +21,7 @@ class DetailTableViewCell: UITableViewCell {
         if let media = displayData as? Twitter.MediaItem {
             if let imageData = try? Data(contentsOf: media.url) {
                 DetailImageView.image = UIImage(data: imageData)
-                DetailImageView.contentMode = UIViewContentMode.scaleAspectFit
+                DetailImageView.contentMode = UIViewContentMode.scaleAspectFill
                 DetailTextLabel.isHidden = true
                 
             }
