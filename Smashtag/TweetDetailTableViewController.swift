@@ -103,7 +103,6 @@ class TweetDetailTableViewController: UITableViewController {
                 destinationVC = navController.visibleViewController ?? destinationVC
             }
             if let tweetTableVC = destinationVC as? TweetTableViewController, let mention = sections[sectionTitles[selected.section]]?[selected.row] as? Twitter.Mention {
-                print(mention.keyword)
                 tweetTableVC.searchText = mention.keyword
             }
         }

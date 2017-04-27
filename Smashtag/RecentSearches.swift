@@ -24,7 +24,6 @@ class RecentSearches {
         }
         recentSearches.append(searchText)
         defaults.set(recentSearches, forKey: "recentSearches")
-        print("saving!")
     }
     
     func getSearches() -> [String] {
