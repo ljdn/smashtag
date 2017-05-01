@@ -11,7 +11,7 @@ import Twitter
 
 class TweetDetailTableViewController: UITableViewController {
     
-    var tweet: Tweet?
+    var tweet: Twitter.Tweet?
     var sections = Dictionary<String, [Any]>()
     var sectionTitles = [String]()
     
