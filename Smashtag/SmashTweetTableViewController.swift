@@ -10,7 +10,7 @@ import UIKit
 import Twitter
 import CoreData
 
-class SmashTweetTableViewCcontroller: TweetTableViewController {
+class SmashTweetTableViewController: TweetTableViewController {
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -34,9 +34,6 @@ class SmashTweetTableViewCcontroller: TweetTableViewController {
             context.perform {
                 if let tweetCount = try? context.count(for: Tweet.fetchRequest()) {
                     print("\(tweetCount) tweets")
-                }
-                if let tweeterCount = try? context.count(for: TwitterUser.fetchRequest()) {
-                    print("\(tweeterCount) twitter users")
                 }
             }
         }

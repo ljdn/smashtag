@@ -32,7 +32,7 @@ class RecentSearchTableViewController: UITableViewController {
 
         return cell
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let selected = tableView.indexPathForSelectedRow
         
@@ -41,7 +41,6 @@ class RecentSearchTableViewController: UITableViewController {
             if let tabBarController = destination as? UITabBarController {
                 destination = (tabBarController.viewControllers?[0] ?? destination)!
                 tabBarController.selectedIndex = 0
-                print("set destination to nav controller")
             }
             if let navController = destination as? UINavigationController {
                 destination = navController.visibleViewController ?? destination
@@ -49,6 +48,12 @@ class RecentSearchTableViewController: UITableViewController {
             if let tweetTableVC = destination as? TweetTableViewController {
                 print(recentSearches.getSearches())
                 tweetTableVC.searchText = recentSearches.getSearches()[(selected?.row)!]
+            }
+        } else if segue.identifier == "seePopularMentions" {
+            let destination = segue.destination
+            if let mentionsTableViewController = destination as? MentionsTableViewController {
+                let mention = (sender as? UITableViewCell)?.textLabel?.text
+                mentionsTableViewController.mention = mention
             }
         }
     }
