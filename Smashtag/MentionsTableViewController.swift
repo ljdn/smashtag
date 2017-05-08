@@ -24,7 +24,6 @@ class MentionsTableViewController: UITableViewController, NSFetchedResultsContro
     
     func getPopularMentions() -> [String] {
         if let mention = mention, let context = container?.viewContext {
-            print("getting popular mentions")
 
             let request: NSFetchRequest<Tweet> = Tweet.fetchRequest()
             request.predicate = NSPredicate(format: "any text contains[c] %@", mention)
@@ -54,7 +53,11 @@ class MentionsTableViewController: UITableViewController, NSFetchedResultsContro
                 popularMentions = Array((popularMentionsDict.keys)).filter( {(popularMentionsDict[$0]!) > 1} )
             }
             popularMentions.sort{ (mention1: String, mention2: String) -> Bool in
-                return (popularMentionsDict[mention1])! > (popularMentionsDict[mention2])!
+                if popularMentionsDict[mention1] == popularMentionsDict[mention2] {
+                    return mention1 < mention2
+                } else {
+                    return (popularMentionsDict[mention1])! > (popularMentionsDict[mention2])!
+                }
             }
         }
         return popularMentions
